@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Todo;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,11 @@ class UserController extends Controller
      */
     public function index()
     {
+        $todo = new Todo;
+        $todo->name = 'todo 1';
+        $todo->user_id = '1';
+        $todo->save();
+
         $users = User::all();
         return view('users.index', compact('users'));
     }

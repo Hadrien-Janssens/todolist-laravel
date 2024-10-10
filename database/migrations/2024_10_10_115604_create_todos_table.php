@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->boolean('is_check')->default(false);
             $table->timestamps();
+            $table->foreignId("user_id")->constrained()->onDelete('cascade');
         });
     }
 
