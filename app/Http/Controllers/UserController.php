@@ -13,12 +13,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $todo = new Todo;
-        $todo->name = 'todo 1';
-        $todo->user_id = '1';
-        $todo->save();
+        $users = User::find(1)->todos()->get();
 
-        $users = User::all();
         return view('users.index', compact('users'));
     }
 
