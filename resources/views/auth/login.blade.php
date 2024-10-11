@@ -1,5 +1,7 @@
 <x-guest-layout>
     <!-- Session Status -->
+
+
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}">
@@ -44,4 +46,14 @@
             </x-primary-button>
         </div>
     </form>
+    <hr class="my-5">
+    <div class="text-center ">
+        Not register yet ?
+        <a
+        href="{{ route('register') }}"
+        class="text-emerald-600 hover:text-emerald-700 underline font-bold"
+    >
+         Register now
+    </a>
+    </div>
 </x-guest-layout>
