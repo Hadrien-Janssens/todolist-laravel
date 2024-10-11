@@ -15,9 +15,9 @@ class TodoController extends Controller
     public function index()
     {
         $id = Auth::id();
-        $users = User::find($id)->todos()->get();
+        $todos = User::find($id)->todos()->get();
 
-        return view('users.index', compact('users'));
+        return view('users.index', compact('todos'));
     }
 
     /**
@@ -66,16 +66,28 @@ class TodoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Todo $todo)
+    public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+        if ($request->input('is-check') === 'on') {
+            $isCheck = true;
+        } else {
+            $isCheck = false;
+        }
+        // dd($id);
+        $todo = Todo::findOrFail($id);
+        $todo->is_check = $isCheck;
+        $todo->save();
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Todo $todo)
+    public function destroy($id)
     {
+        // dd($id);
+        $todo = Todo::findOrFail($id);
         $todo->delete();
 
         return redirect()->back();
