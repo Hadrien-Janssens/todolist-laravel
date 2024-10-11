@@ -35,7 +35,11 @@ class TodoController extends Controller
     {
         $todo = new Todo;
 
-        $todo->name = $request->input('name');
+        $validatedData = $request->validate([
+            'name' => 'required | max:255'
+        ]);
+
+        $todo->name = $validatedData['name'];
         $todo->user_id = Auth::id();
 
         $todo->save();
