@@ -12,13 +12,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $id = Auth::id();
-        $users = User::find($id)->todos()->get();
-
-        return view('users.index', compact('users'));
-    }
+    public function index() {}
 
     /**
      * Show the form for creating a new resource.
@@ -31,17 +25,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $todo = new Todo;
-
-        $todo->name = $request->input('name');
-        $todo->user_id = Auth::id();
-
-        $todo->save();
-
-        return redirect()->back();
-    }
+    public function store(Request $request) {}
 
     /**
      * Display the specified resource.

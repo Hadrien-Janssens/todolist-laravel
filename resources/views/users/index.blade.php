@@ -13,7 +13,11 @@
             <li class="flex items-center w-full justify-between rounded border px-4 py-1">
                 <input type="checkbox" class="rounded border-emerald-400">
                 <p>{{ $user->name}}</p>
-                <button class=" px-4 bg-emerald-600 text-red-50 rounded-md ">delete</button>
+                <form method="POST" action="{{route('todo.destroy', $user)}}">
+                    @csrf
+                    @method('DELETE')
+                    <button class=" px-4 bg-emerald-600 text-red-50 rounded-md ">delete</button>
+                </form>
                 </li>
 
                 @empty
